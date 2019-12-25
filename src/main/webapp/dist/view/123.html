@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+<title>html5 svg圆形进度统计动画特效</title>
+<link rel="stylesheet" href="/dist/css/style.css" />
+<!--<script src="main.js" type="text/javascript" charset="utf-8"></script> -->
+    <script type="text/javascript" src="/dist/js/svgdiv.js"></script>
+</head>
+
+<body>
+<div class="wrap clearfix" id="wrap">
+	<svg  id="svg11" version="1.1" xmlns="http://www.w3.org/2000/svg">
+		<defs id="mydefs">
+			<linearGradient id="lightGreenGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+				<stop offset="0%" stop-color="#38c19d" stop-opacity="0.2"></stop>
+				<stop offset="100%" stop-color="#38c19d" stop-opacity="0.5"></stop>
+			</linearGradient>
+			<linearGradient id="greenDeepGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#38c19d" stop-opacity="0.5"></stop>
+				<stop offset="100%" stop-color="#38c19d" stop-opacity="1"></stop>
+			</linearGradient>
+			<linearGradient id="greenLightRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#38c19d" stop-opacity="1"></stop>
+				<stop offset="100%" stop-color="#ff0000" stop-opacity="0.5"></stop>
+			</linearGradient>
+			<linearGradient id="LightRedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+				<stop offset="0%" stop-color="#ff0000" stop-opacity="0.5"></stop>
+				<stop offset="100%" stop-color="#ff0000" stop-opacity="1"></stop>
+			</linearGradient>
+		</defs>
+	</svg>
+  </div>
+ 
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(function (){
+    // var tables="    <svg  id=\"svg0\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg1\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg2\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg3\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg4\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg5\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg6\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg7\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg8\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>\n" +
+    //     "    <svg  id=\"svg9\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+    //     "    </svg>";
+    //     var fragment = document.createDocumentFragment();
+    //     li = document.createElement('div');
+    //     li.className = "divsvg";
+    //     li.innerHTML=tables;
+    //     fragment.appendChild(li);
+    //     document.getElementById("wrap").appendChild(fragment);
+        // $('wrap').html(tables);
+        var tables="    <table class=\"order-list-table order-item\">undefined<tbody>\n" +
+            "    <tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            长江大学\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">地理信息科学</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\t<svg id=\"svg0\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr><tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            长江大学\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">地理信息科学</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\t<svg id=\"svg1\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr><tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            北京大学\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">地理学</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\t<svg id=\"svg2\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr><tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            山西大学\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">软件工程</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\t<svg id=\"svg3\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr><tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            中国人民大学\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">医学</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\t<svg id=\"svg4\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr><tr> <td class=\"cell cell-price\">\n" +
+            "        <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">\n" +
+            "            湖北工程学院\n" +
+            "        </a>\n" +
+            "    </td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <a class=\"link\" href=\"./detail.html?productId={{productId}}\" target=\"_blank\">统计学</a> </td>\n" +
+            "        <td class=\"cell cell-price\">理科</td>\n" +
+            "        <td class=\"cell cell-price\">第一批</td>\n" +
+            "        <td class=\"cell cell-price\">\n" +
+            "            <svg id=\"svg5\" style=\"width: 150px;height: 150px; text-align: center;\" version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\">\n" +
+            "        </svg></td></tr></tbody></table>";
+            var fragment = document.createDocumentFragment();
+            li = document.createElement('div');
+            li.className = "divsvg";
+            li.innerHTML=tables;
+            fragment.appendChild(li);
+            document.getElementById("wrap").appendChild(fragment);
+        // $('wrap').html(tables);
+    var b=new Array();
+    for(i=0;i<10;i++){
+        b[i]=10*i;
+    }
+    jiazb(b);
+    });
+</script>

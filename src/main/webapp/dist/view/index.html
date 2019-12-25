@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+        <meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="keywords" content="Map，志愿填报，高考，高考分数线，学校信息查询，大学信息，大学定位，专业，志愿，高三，高考志愿，地图，高考志愿填报，模拟填报">
+<meta name="description" content="一个提供全面的学校信息、专业信息、学校定位、专业分数线..，最优质、最便捷的高考志愿填报信息查询平台。">
+<link rel="dns-prefetch" href="//cdn.bootcss.com">
+<link rel="dns-prefetch" href="//s.happymmall.com">
+<link rel="dns-prefetch" href="//img.happymmall.com">
+        <link href="/dist/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+        <link href="/dist/Styles/style.css" rel="stylesheet" type="text/css" />
+        <script src="/dist/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+        <script src="/dist/ol/ol-debug.js" type="text/javascript"></script>
+        <link href="/dist/ol/ol.css" rel="stylesheet" type="text/css" />
+        <script src="/dist/ol/source/GoogleMapSource.js" type="text/javascript"></script>
+        <script src="/dist/ol/layer/GoogleMapLayer.js" type="text/javascript"></script>
+        <script src="/dist/js/FusionCharts.js" type="text/javascript"></script>
+        <script src="/dist/js/echarts.min.js" type="text/javascript"></script>
+        <script src="/dist/jquery-ui-1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="/dist/js/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+        <script src="/dist/js/char.js" type="text/javascript"></script>
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=G3bCtATVFxDuBxKopFCXt0YuCUQACdE2">
+        </script>
+        <link href="/dist/ol/font-awesome.css" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/dist/ol/style.css">
+        <!--图标库-->
+        <link rel="stylesheet" href="/dist/css/all.min.css">
+        <!--图标库-->
+        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css'>
+
+        <!--核心样式-->
+        <link rel="stylesheet" href="/dist/css/styledian.css">
+        <script type="text/javascript" src="/dist/js/custom_map_config.json"></script>
+        <style>/*去除百度地图版权*/
+        .anchorBL{
+            display:none;
+        }
+        </style>
+        <script type="text/javascript" src="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.js"></script>
+        <link rel="stylesheet" href="http://api.map.baidu.com/library/DrawingManager/1.4/src/DrawingManager_min.css" />
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?bc210cd22928076d28296716d9dfcf01";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+        <title>Map志愿平台 - 最NX的志愿填报网站</title>
+    <link rel="shortcut icon" href="/dist/favicon.ico">
+        <link href="/dist/css/common.css?ecbf50208cc93a6780d5" rel="stylesheet">
+        <link href="/dist/css/index.css?ecbf50208cc93a6780d5" rel="stylesheet">
+        <link rel="stylesheet" href="/dist/css/csss.css" />
+        <style type="text/css">
+            html{height:100%}
+            body{height:100%;margin:0px;padding:0px}
+            #container{height:100%}
+            #allmap {width: 100%;height: 100%;overflow: hidden;margin:0;border:#ccc solid 1px;font-size:12px;}
+        </style>
+        </head>
+    <body>
+        <div class="nav">
+    <div class="w">
+        <div class="user-info">
+            <span class="user not-login">
+                <span class="link js-login">登录</span>
+                <span class="link js-register">注册</span>
+            </span>
+            <span class="user login">
+                <span class="link-text">
+                    欢迎，
+                    <span id="username" class="username"></span>
+                </span>
+                <span class="link js-logout">退出</span>
+            </span>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a class="link" href="./cart.html">
+                    <i class="fa fa-shopping-cart"></i>
+                    收藏夹(<span class="cart-count">0</span>)
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="link" href="./order-list.html">我的志愿</a>
+            </li>
+            <li class="nav-item">
+                <a class="link" href="./user-center.html">我的信息</a>
+            </li>
+            <li class="nav-item">
+                <a class="link" href="./about.html">关于Map志愿</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--            <div class="floor-wrap">-->
+                <!--百度地图容器-->
+
+        <div style="width: 100%; height:900px;border:#ccc solid 1px;font-size:12px" id="map1"></div>
+<!--            </div>-->
+        <div class="footer">
+<!--    <div class="w">-->
+<!--        <div class="links">-->
+<!--            <a class="link" href="http://www.imooc.com" target="_blank">慕课网</a> |-->
+<!--            <a class="link" href="https://www.baidu.com" target="_blank">百度</a> |-->
+<!--            <a class="link" href="https://www.taobao.com" target="_blank">淘宝</a> |-->
+<!--            <a class="link" href="https://www.zhihu.com" target="_blank">知乎</a>-->
+<!--        </div>-->
+        <p style="position: absolute;top:900px;left:2px;" class="copyright">
+            Copyright © 2019 zhiy.com All Right Reserved
+        </p>
+<!--    </div>-->
+</div>
+<div class="ww">
+        <div class="header">
+                <a class="logo" href="./index.html">Map志愿</a>
+                <div class="search-con">
+                    <input class="search-input" id="search-input" placeholder="请输入学校名称或专业"/>
+                    <button class="btn search-btn" id="search-btn">搜索</button>
+                </div>
+        </div>
+</div>
+        <div class="backgroundDiv">
+        </div>
+        <!-- 功能模块面板 start -->
+        <div class="containerBack" id="coverLayer"></div>
+        <div class="applyImg" id="imgApply" onclick="showApplyContainer()">
+            综合应用
+        </div>
+        <div class="closeDiv">
+            <div class="closeImg" id="closeFun" onclick="hideApplyContainer()">
+            </div>
+        </div>
+        <div class="applyContainer" id="comApply">
+            <ul>
+                <li>
+                    <select class="applyInput"id="sssqshengfen" onchange="sssqshengfenChange()">
+                        <option value="上海">上海</option>
+                        <option value="江苏">江苏</option>
+                        <option value="浙江">浙江</option>
+                        <option value="安徽">安徽</option>
+                        <option value="北京">北京</option>
+                        <option value="天津">天津</option>
+                        <option value="广东">广东</option>
+                        <option value="河北">河北</option>
+                        <option value="河南">河南</option>
+                        <option value="山东">山东</option>
+                        <option value="湖北" selected="selected">湖北</option>
+                        <option value="湖南">湖南</option>
+                        <option value="江西">江西</option>
+                        <option value="福建">福建</option>
+                        <option value="四川　">四川　</option>
+                        <option value="重庆">重庆</option>
+                        <option value="广西">广西</option>
+                        <option value="山西">山西</option>
+                        <option value="辽宁">辽宁</option>
+                        <option value="吉林">吉林</option>
+                        <option value="黑龙江">黑龙江</option>
+                        <option value="贵州　">贵州　</option>
+                        <option value="陕西">陕西</option>
+                        <option value="云南">云南</option>
+                        <option value="内蒙古">内蒙古</option>
+                        <option value="甘肃">甘肃</option>
+                        <option value="青海">青海</option>
+                        <option value="宁夏">宁夏</option>
+                        <option value="新疆">新疆</option>
+                        <option value="海南">海南</option>
+                        <option value="西藏">西藏</option>
+                        <option value="香港">香港</option>
+                        <option value="澳门">澳门</option>
+                        <option value="台湾">台湾</option>
+                    </select>
+                </li>
+                <li>
+                    <select class="applyInput" id="sssqpcmc" onchange="sssqpcmcChange()">
+                        <option value="dyp" selected="selected">本科一批</option>
+                        <option value="dep">本科二批</option>
+                        <option value="dsp">本科三批</option>
+                    </select>
+                </li>
+                <li><input class="applyInput" type="checkbox" id="sssq" onchange="sssqStateChange()" />
+                    <label for="sssq">学校信息</label>
+                </li>
+                <li>
+                    <input class="applyInput" type="checkbox" id="ssyq" onchange="ssyqStateChange()" />
+                    <label for="ssyq">我的收藏</label></li>
+                <li>
+                    <input class="applyInput" type="checkbox" id="tflj" onchange="tfljStateChange()" />
+                    <label for="tflj">我的志愿</label></li>
+            </ul>
+        </div>
+        <!-- 功能模块面板 end -->
+        <!-- 功能结果展示 -->
+        <div class="LabelList">
+            <ul id="labelUL"></ul>
+        </div>
+        <!-- 实时分数 -->
+        <div class="sqDiv">
+            <div class="sqTop">
+                <div class="sqHeader">
+                    文/理科选择</div>
+                <div class="sqContent">
+                    <input class="sqCheckBox" id="wenInfo" type="checkbox" onchange="showWaterInfo('文科')" />文科
+                    <!--                <input class="sqCheckBox" id="wenInfo" type="checkbox" checked="checked" onchange="showWaterInfo('理科')" />理科-->
+                    <input class="sqCheckBox" id="liInfo" type="checkbox" onchange="showWaterInfo('理科')" />理科
+
+                </div>
+            </div>
+            <div class="sqMain">
+                <div class="skxx">
+                    <div class="sqHeader" onclick="showSssqTab('学校')">
+                        学校专业信息</div>
+                    <div class="hlxxContent" id="skxxTab">
+                        <table id='sssqzszyTable'></table>>
+                        <div style="width:400px;height:300px;margin:auto;" id="zyxian"></div>
+                    </div>
+                </div>
+                <div class="hlxx">
+                    <div class="sqHeader" onclick="showSssqTab('分数线')">
+                        学校文理科投档线
+                    </div>
+                    <div class="hlxxContent" id="hlxxTab">
+                        <div style="width:400px;height:300px;margin:auto;" id="toudanngxian"></div>
+                    </div>
+                </div>
+                <div class="hlxx" id="xxxx">
+                    <div class="sqHeader" onclick="showSssqTab('分数图')">
+                        文/理科批次线
+                    </div>
+                    <div style="width:400px;height:300px;margin:auto;" id="qushitu"></div>
+                </div>
+            </div>
+        </div>
+<!--        收藏夹-->
+        <div class="ssyqDiv" id="ssyqFun">
+                <div class="sqHeader">我的收藏</div>
+                <div class="sqMain">
+                    <div class="hlxx">
+                        <div class="sqHeader" onclick="showSsyqTab(1)">已关注的学校</div>
+                        <div class="hlxxContent" id="yqxxTab"></div>
+                    </div>
+                    <div class="hlxx">
+                        <div class="yqHeader" onclick="showSsyqTab(2)">已关注的专业</div>
+                        <div class="hlxxContent" id="yqTab"></div>
+                    </div>
+                </div>
+        </div>
+<!--        志愿填报-->
+        <div class="tfDiv" id="tfDiv">
+            <div class="sqHeader">志愿结果</div>
+            <input id="fenshuinput" style="width: 100px;" placeholder="请输入高考分数">
+            <input id="fenshuxian"  style="width: 100px;" placeholder="请输入省控线">
+            <select class="applyInput" id="tfleibie">
+                <option value="文科" selected="selected">文科</option>
+                <option value="理科">理科</option>
+            </select>
+            <input id="ke"  style="width: 100px;" placeholder="输入专业可选" >
+<!--            <img src="" style="width:20px;height:20px">-->
+            <button id="search" onclick="getchaxun()">查询</button>
+            <!--2019理科505 文科542-->
+            <div class="sqMain">
+<!--                <img src=""style="width:20px;height:20px">-->
+                <div class="hlxxContent" id="tfTab"></div>
+            </div>
+        </div>
+        <!-- end -->
+        <div class="main" id="main">
+            <div class="menu-box">
+            </div>
+            <!--子-->
+            <div class="sub-menu hide" id="sub-menu">
+                <!--院校区域-->
+                <div class="inner-box ">
+                    <div class="sub-inner-box">
+                        <div class="tittle">院校区域</div>
+                        <div class="sub-row">
+                            <span class="selected" href="javascript:void(0)" onclick="getlist()">华北地区：</span>
+                            <checkbox id="beijin"></checkbox>
+                            <a href="javascript:void(0)" onclick="getzsd('北京')">北京</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('天津')">天津</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('山西')">山西</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('内蒙古')">内蒙古</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">华东地区：</span>
+                            <a href="javascript:void(0)" onclick="getzsd('上海')">上海</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('江苏')">江苏</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('浙江')">浙江</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('山东')">山东</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('安徽')">安徽</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">东北地区：</span>
+                            <a href="javascript:void(0)" onclick="getzsd('辽宁')">辽宁</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('吉林')">吉林</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('黑龙江')">黑龙江</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">华中地区：</span>
+                            <checkbox id="hubei" checked="true"></checkbox>
+                            <a href="javascript:void(0)" onclick="getzsd('湖北')">湖北</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('湖南')">湖南</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('河南')">河南</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('江西')">江西</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">华南地区：</span>
+                            <a href="javascript:void(0)" onclick="getzsd('广东')">广东</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('广西')">广西</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('海南')">海南</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('福建')">福建</a>
+                        </div>
+
+                        <div class="sub-row">
+                            <span class="bold mr10">西南地区：</span>
+                            <a href="javascript:void(0)" onclick="getzsd('四川')">四川</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('重庆')">重庆</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('贵州')">贵州</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('云南')">云南</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('西藏')">西藏</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">西北地区：</span>
+                            <a href="javascript:void(0)" onclick="getzsd('陕西')">陕西</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('甘肃')">甘肃</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('新疆')">新疆</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('青海')">青海</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('宁夏')">宁夏</a>
+                        </div>
+
+                    </div>
+
+                </div>
+                <!--院校类别-->
+                <div class="inner-box">
+                    <div class="sub-inner-box">
+                        <div class="tittle">院校类别</div>
+                        <div class="sub-row">
+                            <span class="bold mr10">  </span>
+                            <a href="javascript:void(0)" onclick="getzsd('不限')">不限</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('体育')">体育</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('军事')">军事</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('农业')">农业</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('医药')">医药</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('综合')">综合</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('艺术')">艺术</a>
+                        </div>
+                        <div class="sub-row">
+                            <span class="bold mr10">  </span>
+                            <a href="javascript:void(0)" onclick="getzsd('工科')">工科</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('师范')">师范</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('政法')">政法</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('民族')">民族</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('林业')">林业</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('语言')">语言</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getzsd('财经')">财经</a>
+                        </div>
+                        <div class="sub-row">
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--院校特色-->
+                <div class="inner-box">
+                    <div class="sub-inner-box">
+                        <div class="tittle">院校特色</div>
+                        <div class="sub-row">
+                            <span class="ml10 mr10">  </span>
+                            <a href="#"> 不限 </a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getschoolclassjiu()"> 985 </a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getschoolclasser()"> 211 </a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getschoolclass('研究生院')">研究生院</a>
+
+                        </div>
+                        <div class="sub-row">
+                            <span class="ml10 mr10">  </span>
+                            <a href="javascript:void(0)" onclick="getschoolclass('双一流A')">双一流A</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getschoolclass('双一流B')">双一流B</a>
+                            <span class="ml10 mr10">/</span>
+                            <a href="javascript:void(0)" onclick="getschoolclass('一流学科')">一流学科</a>
+                        </div>
+                    </div>
+
+                </div>
+                <!--图片轮播-->
+                <div class="banner" id="banner">
+
+                </div>
+
+                <!--上下按钮-->
+                <a href="javascript:void(0)" id="prev"></a>
+                <a href="javascript:void(0)" id="next"></a>
+                <!--圆点-->
+                <div id="dots">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <!--主-->
+            <div class="menu-contern" id="menu-contern">
+                <div class="menu-item">
+                    <a href="">
+                        <span>院校区域</span>
+                        <i class="icon">&#xe665;</i>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="">
+                        <span>院校类别</span>
+                        <i class="icon">&#xe665;</i>
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a href="">
+                        <span>院校特色</span>
+                        <i class="icon">&#xe665;</i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="backgrounddian">
+
+            <input type="checkbox" id="button">
+            <label for="button" class="buttondian"onclick="clear()"> 点击清除标记<i class="fas fa-check"></i></label>
+            <svg class="circle">
+                <circle cx="21" cy="21" r="21"></circle>
+            </svg>
+
+        </div>
+    </body>
+</html>
+<!--<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>-->
+
+<script>
+    var  gxxm1="长江大学";
+    var province="湖北";
+    var pcmc1="本科一批";
+    var prov="湖北省";
+    var zspc1="第一批";
+    var leibie="理科";
+    function sssqshengfenChange(){
+        province =$(".sssqshengfen").val();
+    }
+    function sssqpcmcChange(){
+        pcmc =$(".sssqpcmc").val();
+    }
+    $(function () {
+        initSQBtn();                //初始化实时水情滑动按钮
+        //命名空间BMap是使用所有类的前提，别忘了。
+        initMap();
+        // loadshujutu();
+    });
+</script>
+<script>
+    var myChart = echarts.init(document.getElementById('qushitu'));
+    // 显示标题，图例和空的坐标轴
+    myChart.setOption({
+        title: {
+            x: 'center',
+            y: 'top',
+            text: province+'省'+pcmc1+'高考分数线'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            x: 'right',
+            y: 'top',
+            data:['一本线']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        xAxis: {
+            type : 'category',
+            boundaryGap : false,
+            data: []
+        },
+        yAxis: {
+            min: 450
+        },
+        series: [
+            {
+                name:'一本线',
+                type:'line',
+                data: []
+                ,
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    });
+    myChart.showLoading();    //数据加载完之前先显示一段简单的loading动画
+    var nf=[];    //类别数组（实际用来盛放X轴坐标值）
+    var yiben=[];    //销量数组（实际用来盛放Y坐标值）
+    var erben=[];    //销量数组（实际用来盛放Y坐标值）
+    $.ajax({
+        type : "post",
+        async : false,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url : "http://localhost:8088/dqpcx/getdqpcxzsdke.do",    //请求发送到TestServlet处
+        data : {zsd:province, kelei:leibie, pcmc:pcmc1},
+        dataType : "json",        //返回数据形式ke为json
+        success : function(result) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            if (result) {
+
+                for(var i=0;i<result.data.list.length;i++){
+                    nf.push(result.data.list[i].nf);    //挨个取出类别并填入类别数组
+                    yiben.push(result.data.list[i].zdkzfsx);    //挨个取出销量并填入销量数组
+                }
+                myChart.hideLoading();    //隐藏加载动画
+                myChart.setOption({        //加载数据图表
+                    title: {
+                        x: 'center',
+                        y: 'top',
+                        text: province+'省'+pcmc1+'高考分数线',
+                    },
+                    xAxis: {
+                        // data: names
+                        data: nf
+                    },
+                    yAxis: {
+                        min: 450
+                    },
+                    series: [
+                        {
+                            name:'一本线',
+                            type:'line',
+                            data: yiben,
+                            markLine : {
+                                data : [
+                                    {type : 'average', name: '平均值'}
+                                ]
+                            }
+                        }
+                    ]
+                });
+
+            }
+
+        }
+    });
+</script>
+<script>
+    var toudan = echarts.init(document.getElementById('toudanngxian'));
+    // 显示标题，图例和空的坐标轴
+    toudan.setOption({
+        title: {
+            x: 'center',
+            y: 'top',
+            text: gxxm1+leibie+pcmc1+'投档线'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            x: 'right',
+            y: 'top',
+            data:['投档线']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        xAxis: {
+            type : 'category',
+            boundaryGap : false,
+            data: []
+        },
+        yAxis: {
+            min: 450
+        },
+        series: [
+            {
+                name:'投档线',
+                type:'line',
+                data: []
+                ,
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    });
+    toudan.showLoading();    //数据加载完之前先显示一段简单的loading动画
+</script>
+<script>
+    var zyfsx = echarts.init(document.getElementById('zyxian'));
+    // 显示标题，图例和空的坐标轴
+    zyfsx.setOption({
+        title: {
+            x: 'center',
+            y: 'top',
+            text: gxxm1+leibie+'专业分数线'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            x: 'right',
+            y: 'top',
+            data:['专业分数线']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        xAxis: {
+            type : 'category',
+            boundaryGap : false,
+            data: []
+        },
+        yAxis: {
+            min: 450
+        },
+        series: [
+            {
+                name:'专业分数线',
+                type:'line',
+                data: []
+                ,
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            }
+        ]
+    });
+    zyfsx.showLoading();    //数据加载完之前先显示一段简单的loading动画
+</script>
+<script type="text/javascript" src="/dist/js/base.js?ecbf50208cc93a6780d5"></script>
+<script type="text/javascript" src="/dist/js/map.js"></script>
+<script type="text/javascript" src="/dist/js/index.js?ecbf50208cc93a6780d5"></script>
+<script src="/dist/js/echarts.min.js"></script>
+<script type="text/javascript" src="/dist/js/jsss.js"></script>
+<script src="/dist/js/tankuan.js" type="text/javascript"></script>
+<script src="/dist/js/tankuan2.js" type="text/javascript"></script>
+<script type="text/javascript" src="/dist/js/biaozhu.js"></script>
+
