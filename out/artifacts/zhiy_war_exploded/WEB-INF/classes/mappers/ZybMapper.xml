@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.ZybMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Zyb" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="kb" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gailv" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, username, gxmc, zymc, kb, pc, gailv
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from zyb
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zyb
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Zyb" >
+    insert into zyb (id, username, gxmc, 
+      zymc, kb, pc, gailv
+      )
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{gxmc,jdbcType=VARCHAR}, 
+      #{zymc,jdbcType=VARCHAR}, #{kb,jdbcType=VARCHAR}, #{pc,jdbcType=VARCHAR}, #{gailv,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Zyb" >
+    insert into zyb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="gxmc != null" >
+        gxmc,
+      </if>
+      <if test="zymc != null" >
+        zymc,
+      </if>
+      <if test="kb != null" >
+        kb,
+      </if>
+      <if test="pc != null" >
+        pc,
+      </if>
+      <if test="gailv != null" >
+        gailv,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gxmc != null" >
+        #{gxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null" >
+        #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null" >
+        #{pc,jdbcType=VARCHAR},
+      </if>
+      <if test="gailv != null" >
+        #{gailv,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Zyb" >
+    update zyb
+    <set >
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="gxmc != null" >
+        gxmc = #{gxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        zymc = #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null" >
+        kb = #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null" >
+        pc = #{pc,jdbcType=VARCHAR},
+      </if>
+      <if test="gailv != null" >
+        gailv = #{gailv,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Zyb" >
+    update zyb
+    set username = #{username,jdbcType=VARCHAR},
+      gxmc = #{gxmc,jdbcType=VARCHAR},
+      zymc = #{zymc,jdbcType=VARCHAR},
+      kb = #{kb,jdbcType=VARCHAR},
+      pc = #{pc,jdbcType=VARCHAR},
+      gailv = #{gailv,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+    <select id="getzybList" parameterType="string" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zyb
+        where username=#{username}
+    </select>
+    <delete id="delete" parameterType="com.zhiy.pojo.Scj" >
+    delete from zyb
+    where username = #{username} and gxmc = #{gxmc} and zymc = #{zymc} and kb = #{kb} and pc = #{pc}
+  </delete>
+    <select id="selectCount" parameterType="string" resultType="int">
+        SELECT
+        count(1)
+        from zyb
+        where username=#{username}
+    </select>
+    <select id="check" parameterType="string" resultType="int">
+        SELECT
+        count(1)
+        from zyb
+        where username = #{username} and gxmc = #{gxmc} and zymc = #{zymc} and kb = #{kb} and pc = #{pc}
+    </select>
+    <insert id="insertzy" parameterType="string">
+    insert into zyb (id,username, gxmc,
+      zymc, kb, pc,gailv)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{gxmc,jdbcType=VARCHAR},
+      #{zymc,jdbcType=VARCHAR}, #{kb,jdbcType=VARCHAR}, #{pc,jdbcType=VARCHAR}, #{gailv,jdbcType=VARCHAR})
+  </insert>
+    <select id="countzy" resultType="int">
+        SELECT
+        count(1)
+        from zyb
+   </select>
+</mapper>

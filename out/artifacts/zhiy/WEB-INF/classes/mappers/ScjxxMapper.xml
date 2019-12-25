@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhiy.dao.ScjxxMapper">
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Scjxx">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="username" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="school" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="kb" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="pc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, school, kb, pc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from scjxx
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from scjxx
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Scjxx">
+    insert into scjxx (id, username, school, 
+      kb, pc)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
+      #{kb,jdbcType=VARCHAR}, #{pc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Scjxx">
+    insert into scjxx
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="school != null">
+        school,
+      </if>
+      <if test="kb != null">
+        kb,
+      </if>
+      <if test="pc != null">
+        pc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null">
+        #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null">
+        #{pc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Scjxx">
+    update scjxx
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null">
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null">
+        kb = #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null">
+        pc = #{pc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Scjxx">
+    update scjxx
+    set username = #{username,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      kb = #{kb,jdbcType=VARCHAR},
+      pc = #{pc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+    <select id="getzyxxxList" resultMap="BaseResultMap">
+        <include refid="Base_Column_List" />
+    from scjxx
+    where username=#{username}
+    </select>
+    <select id="countzy" parameterType="string" resultType="int">
+        SELECT
+        count(1)
+        from scjxx where username!=null;
+   </select>
+    <select id="checkxx" parameterType="string" resultType="int">
+        SELECT
+        count(1)
+        from scjxx
+        where username = #{username} and school = #{gxmc}
+    </select>
+</mapper>

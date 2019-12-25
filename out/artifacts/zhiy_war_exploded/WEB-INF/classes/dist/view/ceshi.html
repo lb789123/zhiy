@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>水利信息在线分析服务系统</title>
+    <link href="/dist/jquery-ui-1.11.4/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+    <link href="/dist/Styles/style.css" rel="stylesheet" type="text/css" />
+    <!-- jQuery库 -->
+    <script src="/dist/js/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <!--OL3库-->
+<!--    <script src="Libs/ol/ol.js" type="text/javascript"></script>-->
+    <script src="/dist/ol/ol-debug.js" type="text/javascript"></script>
+    <link href="/dist/ol/ol.css" rel="stylesheet" type="text/css" />
+    <!--OL3扩展库-->
+    <script src="/dist/ol/source/GoogleMapSource.js" type="text/javascript"></script>
+    <script src="/dist/ol/layer/GoogleMapLayer.js" type="text/javascript"></script>
+   <!-- 第三方插件库 统计图插件 -->
+    <script src="/dist/js/FusionCharts.js" type="text/javascript"></script>
+    <!-- 第三方插件库 -->
+    <script src="/dist/jquery-ui-1.11.4/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/dist/js/jquery.ui.datepicker-zh-CN.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="backgroundDiv">
+    </div>
+    <!-- 地图底图切换列表 -->
+    <select class="layerSwitcherDiv" id="layerSwitcherBtn" onchange="onlayerSwitcherBtn()">
+        <option value="terrain">谷歌地形图</option>
+        <option value="vector">谷歌矢量图</option>
+        <option value="raster">谷歌遥感图</option>
+        <option value="road">谷歌交通图</option>
+    </select>
+    <div class="logoImg"></div>
+    <!-- 功能模块面板 start -->
+    <div class="containerBack" id="coverLayer"></div>
+    <div class="applyImg" id="imgApply" onclick="showApplyContainer()">
+        综合应用
+    </div>
+    <div class="closeDiv">
+        <div class="closeImg" id="closeFun" onclick="hideApplyContainer()">
+        </div>
+    </div>
+    <div class="applyContainer" id="comApply">
+        <ul>
+            <li><input class="applyInput" type="checkbox" id="sssq" onchange="sssqStateChange()" /><label for="sssq">实时水情</label></li>
+            <li><input class="applyInput" type="checkbox" id="ssyq" onchange="ssyqStateChanhe()" /><label for="ssyq">实时雨情</label></li>
+            <li><input class="applyInput" type="checkbox" id="tflj" onchange="tfljStateChange()" /><label for="tflj">台风路径</label></li>
+            <li><input class="applyInput" type="checkbox" id="wxyt" onchange="wxytStateChange()" /><label for="wxyt">卫星云图</label></li>
+        </ul>
+    </div>
+    <!-- 功能模块面板 end -->
+    <!-- 功能结果展示 -->
+    <div class="LabelList">
+        <ul id="labelUL"></ul>
+    </div>
+    <!-- 实时水情start -->
+    <div class="sqDiv">
+        <div class="sqTop">
+            <div class="sqHeader">
+                文/理科选择</div>
+            <div class="sqContent">
+                <input class="sqCheckBox" id="wenInfo" type="checkbox" onchange="showWaterInfo('文科')" />文科
+<!--                <input class="sqCheckBox" id="wenInfo" type="checkbox" checked="checked" onchange="showWaterInfo('理科')" />理科-->
+                <input class="sqCheckBox" id="liInfo" type="checkbox" onchange="showWaterInfo('理科')" />理科
+
+            </div>
+        </div>
+        <div class="sqMain">
+            <div class="skxx">
+                <div class="sqHeader" onclick="showSssqTab('文科')">
+                    学校专业信息</div>
+                <div class="hlxxContent" id="skxxTab">
+                </div>
+            </div>
+            <div class="hlxx">
+                <div class="sqHeader" onclick="showSssqTab('理科')">
+                    文理科分数线
+                </div>
+                <div class="hlxxContent" id="hlxxTab">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sqSplitDiv" id="sqSplitBtn"></div>
+    <!-- 实时水情end -->
+    <!-- 系统功能库 -->
+    <script src="/dist/js/tankuan.js" type="text/javascript"></script>
+</body>
+</html>

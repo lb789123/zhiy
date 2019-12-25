@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.SkfsxbMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Skfsxb" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sfdm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcbm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="klbm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="fsx" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sfdm, nf, pcbm, klbm, fsx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from skfsxb
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from skfsxb
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Skfsxb" >
+    insert into skfsxb (id, sfdm, nf, 
+      pcbm, klbm, fsx)
+    values (#{id,jdbcType=INTEGER}, #{sfdm,jdbcType=VARCHAR}, #{nf,jdbcType=VARCHAR}, 
+      #{pcbm,jdbcType=VARCHAR}, #{klbm,jdbcType=VARCHAR}, #{fsx,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Skfsxb" >
+    insert into skfsxb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sfdm != null" >
+        sfdm,
+      </if>
+      <if test="nf != null" >
+        nf,
+      </if>
+      <if test="pcbm != null" >
+        pcbm,
+      </if>
+      <if test="klbm != null" >
+        klbm,
+      </if>
+      <if test="fsx != null" >
+        fsx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sfdm != null" >
+        #{sfdm,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="pcbm != null" >
+        #{pcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="klbm != null" >
+        #{klbm,jdbcType=VARCHAR},
+      </if>
+      <if test="fsx != null" >
+        #{fsx,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Skfsxb" >
+    update skfsxb
+    <set >
+      <if test="sfdm != null" >
+        sfdm = #{sfdm,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        nf = #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="pcbm != null" >
+        pcbm = #{pcbm,jdbcType=VARCHAR},
+      </if>
+      <if test="klbm != null" >
+        klbm = #{klbm,jdbcType=VARCHAR},
+      </if>
+      <if test="fsx != null" >
+        fsx = #{fsx,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Skfsxb" >
+    update skfsxb
+    set sfdm = #{sfdm,jdbcType=VARCHAR},
+      nf = #{nf,jdbcType=VARCHAR},
+      pcbm = #{pcbm,jdbcType=VARCHAR},
+      klbm = #{klbm,jdbcType=VARCHAR},
+      fsx = #{fsx,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

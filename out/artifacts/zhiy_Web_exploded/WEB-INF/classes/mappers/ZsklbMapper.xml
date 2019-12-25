@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.ZsklbMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Zsklb" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zsklbm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zsklmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xlcc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ssdl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xw" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xk" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="xjzy" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, zsklbm, zsklmc, xlcc, ssdl, xw, xk, xjzy
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from zsklb
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from zsklb
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Zsklb" >
+    insert into zsklb (id, zsklbm, zsklmc, 
+      xlcc, ssdl, xw, xk, 
+      xjzy)
+    values (#{id,jdbcType=VARCHAR}, #{zsklbm,jdbcType=VARCHAR}, #{zsklmc,jdbcType=VARCHAR}, 
+      #{xlcc,jdbcType=VARCHAR}, #{ssdl,jdbcType=VARCHAR}, #{xw,jdbcType=VARCHAR}, #{xk,jdbcType=VARCHAR}, 
+      #{xjzy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Zsklb" >
+    insert into zsklb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zsklbm != null" >
+        zsklbm,
+      </if>
+      <if test="zsklmc != null" >
+        zsklmc,
+      </if>
+      <if test="xlcc != null" >
+        xlcc,
+      </if>
+      <if test="ssdl != null" >
+        ssdl,
+      </if>
+      <if test="xw != null" >
+        xw,
+      </if>
+      <if test="xk != null" >
+        xk,
+      </if>
+      <if test="xjzy != null" >
+        xjzy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zsklbm != null" >
+        #{zsklbm,jdbcType=VARCHAR},
+      </if>
+      <if test="zsklmc != null" >
+        #{zsklmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xlcc != null" >
+        #{xlcc,jdbcType=VARCHAR},
+      </if>
+      <if test="ssdl != null" >
+        #{ssdl,jdbcType=VARCHAR},
+      </if>
+      <if test="xw != null" >
+        #{xw,jdbcType=VARCHAR},
+      </if>
+      <if test="xk != null" >
+        #{xk,jdbcType=VARCHAR},
+      </if>
+      <if test="xjzy != null" >
+        #{xjzy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Zsklb" >
+    update zsklb
+    <set >
+      <if test="zsklbm != null" >
+        zsklbm = #{zsklbm,jdbcType=VARCHAR},
+      </if>
+      <if test="zsklmc != null" >
+        zsklmc = #{zsklmc,jdbcType=VARCHAR},
+      </if>
+      <if test="xlcc != null" >
+        xlcc = #{xlcc,jdbcType=VARCHAR},
+      </if>
+      <if test="ssdl != null" >
+        ssdl = #{ssdl,jdbcType=VARCHAR},
+      </if>
+      <if test="xw != null" >
+        xw = #{xw,jdbcType=VARCHAR},
+      </if>
+      <if test="xk != null" >
+        xk = #{xk,jdbcType=VARCHAR},
+      </if>
+      <if test="xjzy != null" >
+        xjzy = #{xjzy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Zsklb" >
+    update zsklb
+    set zsklbm = #{zsklbm,jdbcType=VARCHAR},
+      zsklmc = #{zsklmc,jdbcType=VARCHAR},
+      xlcc = #{xlcc,jdbcType=VARCHAR},
+      ssdl = #{ssdl,jdbcType=VARCHAR},
+      xw = #{xw,jdbcType=VARCHAR},
+      xk = #{xk,jdbcType=VARCHAR},
+      xjzy = #{xjzy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

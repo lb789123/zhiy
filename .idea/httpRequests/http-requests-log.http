@@ -1,0 +1,82 @@
+POST http://localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-26T020854.404.html
+
+###
+
+POST http://localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-26T020853.404.html
+
+###
+
+POST http://localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-26T020852.404.html
+
+###
+
+POST http://localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-26T020305.404.html
+
+###
+
+POST localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8088/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+<> 2019-04-26T020227.404.html
+
+###
+
+POST http://localhost:8080/user/login?username=admin&password=admin
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/user/login
+Accept: */*
+Cache-Control: no-cache
+
+###
+
+POST http://localhost:8080/user/login
+Accept: */*
+Cache-Control: no-cache
+
+###
+

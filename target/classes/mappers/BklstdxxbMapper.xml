@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.BklstdxxbMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Bklstdxxb" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gxxm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zssf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zskl" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zspc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lqzdf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lqpjf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="lqzgf" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, gxxm, zssf, nf, zskl, zspc, lqzdf, lqpjf, lqzgf
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bklstdxxb
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+    <select id="select" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from bklstdxxb
+        where  id = #{id,jdbcType=VARCHAR} and zssf=#{zssf} and zskl=#{zskl} and zspc=#{zspc}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from bklstdxxb
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Bklstdxxb" >
+    insert into bklstdxxb (id, gxxm, zssf, 
+      nf, zskl, zspc, lqzdf, 
+      lqpjf, lqzgf)
+    values (#{id,jdbcType=VARCHAR}, #{gxxm,jdbcType=VARCHAR}, #{zssf,jdbcType=VARCHAR}, 
+      #{nf,jdbcType=VARCHAR}, #{zskl,jdbcType=VARCHAR}, #{zspc,jdbcType=VARCHAR}, #{lqzdf,jdbcType=VARCHAR}, 
+      #{lqpjf,jdbcType=VARCHAR}, #{lqzgf,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Bklstdxxb" >
+    insert into bklstdxxb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="gxxm != null" >
+        gxxm,
+      </if>
+      <if test="zssf != null" >
+        zssf,
+      </if>
+      <if test="nf != null" >
+        nf,
+      </if>
+      <if test="zskl != null" >
+        zskl,
+      </if>
+      <if test="zspc != null" >
+        zspc,
+      </if>
+      <if test="lqzdf != null" >
+        lqzdf,
+      </if>
+      <if test="lqpjf != null" >
+        lqpjf,
+      </if>
+      <if test="lqzgf != null" >
+        lqzgf,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="gxxm != null" >
+        #{gxxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zssf != null" >
+        #{zssf,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="zskl != null" >
+        #{zskl,jdbcType=VARCHAR},
+      </if>
+      <if test="zspc != null" >
+        #{zspc,jdbcType=VARCHAR},
+      </if>
+      <if test="lqzdf != null" >
+        #{lqzdf,jdbcType=VARCHAR},
+      </if>
+      <if test="lqpjf != null" >
+        #{lqpjf,jdbcType=VARCHAR},
+      </if>
+      <if test="lqzgf != null" >
+        #{lqzgf,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Bklstdxxb" >
+    update bklstdxxb
+    <set >
+      <if test="gxxm != null" >
+        gxxm = #{gxxm,jdbcType=VARCHAR},
+      </if>
+      <if test="zssf != null" >
+        zssf = #{zssf,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        nf = #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="zskl != null" >
+        zskl = #{zskl,jdbcType=VARCHAR},
+      </if>
+      <if test="zspc != null" >
+        zspc = #{zspc,jdbcType=VARCHAR},
+      </if>
+      <if test="lqzdf != null" >
+        lqzdf = #{lqzdf,jdbcType=VARCHAR},
+      </if>
+      <if test="lqpjf != null" >
+        lqpjf = #{lqpjf,jdbcType=VARCHAR},
+      </if>
+      <if test="lqzgf != null" >
+        lqzgf = #{lqzgf,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Bklstdxxb" >
+    update bklstdxxb
+    set gxxm = #{gxxm,jdbcType=VARCHAR},
+      zssf = #{zssf,jdbcType=VARCHAR},
+      nf = #{nf,jdbcType=VARCHAR},
+      zskl = #{zskl,jdbcType=VARCHAR},
+      zspc = #{zspc,jdbcType=VARCHAR},
+      lqzdf = #{lqzdf,jdbcType=VARCHAR},
+      lqpjf = #{lqpjf,jdbcType=VARCHAR},
+      lqzgf = #{lqzgf,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="getBklstdxxbList" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from bklstdxxb
+        where zssf=#{zssf} and gxxm=#{gxxm} and zskl=#{zskl} and zspc=#{zspc}
+        order by nf ASC
+    </select>
+    <select id="getBklstdxxbListwkl" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from bklstdxxb
+        where zssf=#{zssf} and gxxm=#{gxxm} and zspc=#{zspc}
+    </select>
+    <select id="getBklstdxxbList1" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from bklstdxxb
+        where zssf=#{zssf} and zskl=#{zskl} and zspc=#{zspc} and (nf="2017"||nf="2016"||nf="2018"||nf="2015")
+    </select>
+    <select id="checkzssf" resultMap="BaseResultMap" >
+        SELECT
+        id, gxxm, zssf, nf, zskl, zspc, lqzdf, lqpjf, lqzgf
+        from bklstdxxb
+        where zssf=#{zssf} and zskl=#{zskl} and zspc=#{zspc} and (nf="2017"||nf="2016"||nf="2018"||nf="2015")
+        GROUP BY gxxm
+    </select>
+    <select id="getdqpcx" parameterType="java.lang.String" resultType="java.lang.String" >
+        SELECT
+        zdkzfsx
+        from dqpcx
+        where ksszd=#{zssf} and wlfk=#{zskl} and pcmc="本科一批" and nf="2007"
+    </select>
+    <select id="count" resultType="int">
+        SELECT
+        count(1)
+        from bklstdxxb
+   </select>
+    <select id="checkid" parameterType="java.lang.String" resultType="com.zhiy.pojo.Bklstdxxb">
+        SELECT
+        <include refid="Base_Column_List" />
+         from bklstdxxb
+        where id=#{id,jdbcType=VARCHAR} and zssf=#{zssf} and zskl=#{zskl} and zspc=#{zskl}
+   </select>
+
+    <select id="selectbyzdf" parameterType="java.lang.String" resultType="com.zhiy.pojo.Bklstdxxb" >
+        SELECT
+        <include refid="Base_Column_List" />
+        from bklstdxxb
+        where lqzdf=#{zdf} or lqzgf=#{zdf}
+    </select>
+ </mapper>

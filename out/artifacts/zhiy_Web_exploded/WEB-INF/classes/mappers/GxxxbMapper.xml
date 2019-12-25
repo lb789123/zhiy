@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.GxxxbMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Gxxxb" >
+    <constructor >
+      <idArg column="gxtydm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gxxm" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="tb" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="szd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ts" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zs" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="wz" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="wd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jd" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    gxtydm, gxxm, tb, szd, ts, zs, wz, wd, jd
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from gxxxb
+    where gxtydm = #{gxtydm,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from gxxxb
+    where gxtydm = #{gxtydm,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Gxxxb" >
+    insert into gxxxb (gxtydm, gxxm, tb, 
+      szd, ts, zs, wz, 
+      wd, jd)
+    values (#{gxtydm,jdbcType=VARCHAR}, #{gxxm,jdbcType=VARCHAR}, #{tb,jdbcType=VARCHAR}, 
+      #{szd,jdbcType=VARCHAR}, #{ts,jdbcType=VARCHAR}, #{zs,jdbcType=VARCHAR}, #{wz,jdbcType=VARCHAR}, 
+      #{wd,jdbcType=VARCHAR}, #{jd,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Gxxxb" >
+    insert into gxxxb
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gxtydm != null" >
+        gxtydm,
+      </if>
+      <if test="gxxm != null" >
+        gxxm,
+      </if>
+      <if test="tb != null" >
+        tb,
+      </if>
+      <if test="szd != null" >
+        szd,
+      </if>
+      <if test="ts != null" >
+        ts,
+      </if>
+      <if test="zs != null" >
+        zs,
+      </if>
+      <if test="wz != null" >
+        wz,
+      </if>
+      <if test="wd != null" >
+        wd,
+      </if>
+      <if test="jd != null" >
+        jd,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gxtydm != null" >
+        #{gxtydm,jdbcType=VARCHAR},
+      </if>
+      <if test="gxxm != null" >
+        #{gxxm,jdbcType=VARCHAR},
+      </if>
+      <if test="tb != null" >
+        #{tb,jdbcType=VARCHAR},
+      </if>
+      <if test="szd != null" >
+        #{szd,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="zs != null" >
+        #{zs,jdbcType=VARCHAR},
+      </if>
+      <if test="wz != null" >
+        #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null" >
+        #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="jd != null" >
+        #{jd,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Gxxxb" >
+    update gxxxb
+    <set >
+      <if test="gxxm != null" >
+        gxxm = #{gxxm,jdbcType=VARCHAR},
+      </if>
+      <if test="tb != null" >
+        tb = #{tb,jdbcType=VARCHAR},
+      </if>
+      <if test="szd != null" >
+        szd = #{szd,jdbcType=VARCHAR},
+      </if>
+      <if test="ts != null" >
+        ts = #{ts,jdbcType=VARCHAR},
+      </if>
+      <if test="zs != null" >
+        zs = #{zs,jdbcType=VARCHAR},
+      </if>
+      <if test="wz != null" >
+        wz = #{wz,jdbcType=VARCHAR},
+      </if>
+      <if test="wd != null" >
+        wd = #{wd,jdbcType=VARCHAR},
+      </if>
+      <if test="jd != null" >
+        jd = #{jd,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where gxtydm = #{gxtydm,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Gxxxb" >
+    update gxxxb
+    set gxxm = #{gxxm,jdbcType=VARCHAR},
+      tb = #{tb,jdbcType=VARCHAR},
+      szd = #{szd,jdbcType=VARCHAR},
+      ts = #{ts,jdbcType=VARCHAR},
+      zs = #{zs,jdbcType=VARCHAR},
+      wz = #{wz,jdbcType=VARCHAR},
+      wd = #{wd,jdbcType=VARCHAR},
+      jd = #{jd,jdbcType=VARCHAR}
+    where gxtydm = #{gxtydm,jdbcType=VARCHAR}
+  </update>
+    <select id="checkGxxm" parameterType="java.lang.String" resultType="int">
+    SELECT
+    count(*)
+    from gxxxb
+    where gxxm = #{Gxxm}
+    </select>
+    <select id="selectbygxxm" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from gxxxb
+        where gxxm = #{Gxxm}
+    </select>
+    <select id="selectList" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from gxxxb
+    </select>
+
+    <select id="getGxxxbListclass" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from gxxxb
+        where ts LIKE #{leibie}
+    </select>
+    <select id="getGxxxbListzsd" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from gxxxb
+        where szd=#{zsd}
+    </select>
+    <select id="getTs" parameterType="string" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from gxxxb
+        where gxxm=#{gxxm}
+
+    </select>
+</mapper>

@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.SchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.School" >
+    <constructor >
+      <idArg column="schoolcol" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="school" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="jiu" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="er" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="shuang" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    schoolcol, school, jiu, er, shuang
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from school
+    where schoolcol = #{schoolcol,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from school
+    where schoolcol = #{schoolcol,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.School" >
+    insert into school (schoolcol, school, jiu, 
+      er, shuang)
+    values (#{schoolcol,jdbcType=INTEGER}, #{school,jdbcType=VARCHAR}, #{jiu,jdbcType=VARCHAR}, 
+      #{er,jdbcType=VARCHAR}, #{shuang,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.School" >
+    insert into school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="schoolcol != null" >
+        schoolcol,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="jiu != null" >
+        jiu,
+      </if>
+      <if test="er != null" >
+        er,
+      </if>
+      <if test="shuang != null" >
+        shuang,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="schoolcol != null" >
+        #{schoolcol,jdbcType=INTEGER},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="jiu != null" >
+        #{jiu,jdbcType=VARCHAR},
+      </if>
+      <if test="er != null" >
+        #{er,jdbcType=VARCHAR},
+      </if>
+      <if test="shuang != null" >
+        #{shuang,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.School" >
+    update school
+    <set >
+      <if test="school != null" >
+        school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="jiu != null" >
+        jiu = #{jiu,jdbcType=VARCHAR},
+      </if>
+      <if test="er != null" >
+        er = #{er,jdbcType=VARCHAR},
+      </if>
+      <if test="shuang != null" >
+        shuang = #{shuang,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where schoolcol = #{schoolcol,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.School" >
+    update school
+    set school = #{school,jdbcType=VARCHAR},
+      jiu = #{jiu,jdbcType=VARCHAR},
+      er = #{er,jdbcType=VARCHAR},
+      shuang = #{shuang,jdbcType=VARCHAR}
+    where schoolcol = #{schoolcol,jdbcType=INTEGER}
+  </update>
+    <select id="checkschool" parameterType="java.lang.String" resultType="int">
+    SELECT
+    count(*)
+    from school
+    where school = #{school}
+    </select>
+    <select id="selectbyschool" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from school
+    where school = #{school}
+</select>
+    <select id="selectbyjiu" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from school
+        where jiu = 1
+    </select>
+    <select id="selectbyer" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from school
+        where er = 1
+    </select>
+    <select id="selectbyshuang" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        from school
+        where shuang = #{ts}
+    </select>
+</mapper>

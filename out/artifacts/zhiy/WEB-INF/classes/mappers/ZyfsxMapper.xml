@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.ZyfsxMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Zyfsx" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zymc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="gxmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pjf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zgf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ksdq" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="kb" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pc" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, zymc, gxmc, pjf, zgf, ksdq, kb, nf, pc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from zyfsx
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from zyfsx
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Zyfsx" >
+    insert into zyfsx (id, zymc, gxmc, 
+      pjf, zgf, ksdq, kb, 
+      nf, pc)
+    values (#{id,jdbcType=VARCHAR}, #{zymc,jdbcType=VARCHAR}, #{gxmc,jdbcType=VARCHAR}, 
+      #{pjf,jdbcType=VARCHAR}, #{zgf,jdbcType=VARCHAR}, #{ksdq,jdbcType=VARCHAR}, #{kb,jdbcType=VARCHAR}, 
+      #{nf,jdbcType=VARCHAR}, #{pc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Zyfsx" >
+    insert into zyfsx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="zymc != null" >
+        zymc,
+      </if>
+      <if test="gxmc != null" >
+        gxmc,
+      </if>
+      <if test="pjf != null" >
+        pjf,
+      </if>
+      <if test="zgf != null" >
+        zgf,
+      </if>
+      <if test="ksdq != null" >
+        ksdq,
+      </if>
+      <if test="kb != null" >
+        kb,
+      </if>
+      <if test="nf != null" >
+        nf,
+      </if>
+      <if test="pc != null" >
+        pc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="zymc != null" >
+        #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="gxmc != null" >
+        #{gxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="pjf != null" >
+        #{pjf,jdbcType=VARCHAR},
+      </if>
+      <if test="zgf != null" >
+        #{zgf,jdbcType=VARCHAR},
+      </if>
+      <if test="ksdq != null" >
+        #{ksdq,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null" >
+        #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null" >
+        #{pc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Zyfsx" >
+    update zyfsx
+    <set >
+      <if test="zymc != null" >
+        zymc = #{zymc,jdbcType=VARCHAR},
+      </if>
+      <if test="gxmc != null" >
+        gxmc = #{gxmc,jdbcType=VARCHAR},
+      </if>
+      <if test="pjf != null" >
+        pjf = #{pjf,jdbcType=VARCHAR},
+      </if>
+      <if test="zgf != null" >
+        zgf = #{zgf,jdbcType=VARCHAR},
+      </if>
+      <if test="ksdq != null" >
+        ksdq = #{ksdq,jdbcType=VARCHAR},
+      </if>
+      <if test="kb != null" >
+        kb = #{kb,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        nf = #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="pc != null" >
+        pc = #{pc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Zyfsx" >
+    update zyfsx
+    set zymc = #{zymc,jdbcType=VARCHAR},
+      gxmc = #{gxmc,jdbcType=VARCHAR},
+      pjf = #{pjf,jdbcType=VARCHAR},
+      zgf = #{zgf,jdbcType=VARCHAR},
+      ksdq = #{ksdq,jdbcType=VARCHAR},
+      kb = #{kb,jdbcType=VARCHAR},
+      nf = #{nf,jdbcType=VARCHAR},
+      pc = #{pc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="gezyList" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zyfsx
+        where ksdq=#{ksdq} and gxmc=#{gxmc} and kb=#{kb} and pc=#{pc} and nf="2017"
+    </select>
+    <select id="gezyList1" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zyfsx
+        where ksdq=#{ksdq} and gxmc=#{gxmc} and pc=#{pc}
+    </select>
+    <select id="gezyfsList" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from zyfsx
+        where ksdq=#{ksdq} and gxmc=#{gxmc} and kb=#{kb} and pc=#{pc} and zymc=#{zymc}
+        order by nf desc
+    </select>
+</mapper>

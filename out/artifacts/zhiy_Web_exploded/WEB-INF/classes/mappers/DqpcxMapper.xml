@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhiy.dao.DqpcxMapper" >
+  <resultMap id="BaseResultMap" type="com.zhiy.pojo.Dqpcx" >
+    <constructor >
+      <idArg column="id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="nf" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ksszd" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="wlfk" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="pcmc" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="zdkzfsx" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, nf, ksszd, wlfk, pcmc, zdkzfsx
+  </sql>
+    <sql id="Base_Column_List1" >
+    nf, ksszd, wlfk, pcmc, zdkzfsx
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from dqpcx
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from dqpcx
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhiy.pojo.Dqpcx" >
+    insert into dqpcx (id, nf, ksszd, 
+      wlfk, pcmc, zdkzfsx
+      )
+    values (#{id,jdbcType=VARCHAR}, #{nf,jdbcType=VARCHAR}, #{ksszd,jdbcType=VARCHAR}, 
+      #{wlfk,jdbcType=VARCHAR}, #{pcmc,jdbcType=VARCHAR}, #{zdkzfsx,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhiy.pojo.Dqpcx" >
+    insert into dqpcx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="nf != null" >
+        nf,
+      </if>
+      <if test="ksszd != null" >
+        ksszd,
+      </if>
+      <if test="wlfk != null" >
+        wlfk,
+      </if>
+      <if test="pcmc != null" >
+        pcmc,
+      </if>
+      <if test="zdkzfsx != null" >
+        zdkzfsx,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="nf != null" >
+        #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="ksszd != null" >
+        #{ksszd,jdbcType=VARCHAR},
+      </if>
+      <if test="wlfk != null" >
+        #{wlfk,jdbcType=VARCHAR},
+      </if>
+      <if test="pcmc != null" >
+        #{pcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zdkzfsx != null" >
+        #{zdkzfsx,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhiy.pojo.Dqpcx" >
+    update dqpcx
+    <set >
+      <if test="nf != null" >
+        nf = #{nf,jdbcType=VARCHAR},
+      </if>
+      <if test="ksszd != null" >
+        ksszd = #{ksszd,jdbcType=VARCHAR},
+      </if>
+      <if test="wlfk != null" >
+        wlfk = #{wlfk,jdbcType=VARCHAR},
+      </if>
+      <if test="pcmc != null" >
+        pcmc = #{pcmc,jdbcType=VARCHAR},
+      </if>
+      <if test="zdkzfsx != null" >
+        zdkzfsx = #{zdkzfsx,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhiy.pojo.Dqpcx" >
+    update dqpcx
+    set nf = #{nf,jdbcType=VARCHAR},
+      ksszd = #{ksszd,jdbcType=VARCHAR},
+      wlfk = #{wlfk,jdbcType=VARCHAR},
+      pcmc = #{pcmc,jdbcType=VARCHAR},
+      zdkzfsx = #{zdkzfsx,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+    <select id="getDqpcxListzsd" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from dqpcx
+        where ksszd=#{zsd}
+    </select>
+    <select id="getDqpcxListkezsd" resultMap="BaseResultMap" >
+        SELECT
+        <include refid="Base_Column_List"/>
+        from dqpcx
+        where ksszd=#{zsd} and wlfk=#{kelei}and pcmc=#{pcmc}
+        order by nf ASC
+    </select>
+    <select id="getdqpc" resultType="java.lang.String" >
+        SELECT
+        zdkzfsx
+        from dqpcx
+        where ksszd=#{zssf} and wlfk=#{zskl} and pcmc=#{zskl} and nf=#{nf}
+        order by nf ASC
+    </select>
+</mapper>
